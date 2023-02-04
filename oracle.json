@@ -1,0 +1,17 @@
+{
+  "name": "dbtest-connector",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "connection.url": "jdbc:oracle:thin:@//localhost:1521/orcl",
+    "connection.user": "system",
+    "connection.password": "oracle",
+    "tasks.max": "1",
+    "mode": "timestamp+incrementing",
+    "incrementing.column.name": "id",
+    "timestamp.column.name": "last_modified",
+    "topic.prefix": "dbtest-",
+    "poll.interval.ms": "1000",
+    "table.whitelist": "dbtest",
+    "validate.non.null": "false"
+  }
+}
