@@ -129,16 +129,3 @@ cek di topik = dbserver1.inventory.customers
 		},
 ....
 ```
-streaming dari program simple spring boot: [GitHub Saya](https://github.com/erfinfeluzy/training-kafka-debezium) 
-```
-> git clone https://github.com/erfinfeluzy/training-kafka-debezium.git
-
-> mvn spring-boot:run
-```
-
-## Pranala Luar
-- https://kafka.apache.org/quickstart
-- https://debezium.io/documentation/reference/0.9/connectors/mysql.html
-- https://medium.com/easyread/ingest-data-dari-mysql-database-ke-bigquery-dengan-apache-kafka-dan-debezium-f519e197f39c
-- https://vladmihalcea.com/how-to-extract-change-data-events-from-mysql-to-kafka-using-debezium/
-- https://www.baeldung.com/spring-kafka
