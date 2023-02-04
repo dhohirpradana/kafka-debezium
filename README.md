@@ -1,6 +1,6 @@
 # TUTORIAL KAFKA DEBEZIUM MYSQL (INDONESIAN)
 
-# Debezium Repository
+Debezium Repository
 https://repo1.maven.org/maven2/io/debezium/
 
 Tutorial ini akan melakukan hands on bagaiman perubahan data di database dapat di streaming dengan mudah ke [Apache Kafka](https://kafka.apache.org/) dengan munggunakan konektor dari [Debezium](https://debezium.io).
