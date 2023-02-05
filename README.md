@@ -3,6 +3,9 @@
 Debezium Repository
 https://repo1.maven.org/maven2/io/debezium/
 
+Debezium Plugins
+https://debezium.io/releases/1.8/
+
 Tutorial ini akan melakukan hands on bagaiman perubahan data di database dapat di streaming dengan mudah ke [Apache Kafka](https://kafka.apache.org/) dengan munggunakan konektor dari [Debezium](https://debezium.io).
 Contoh use casenya adalah pembayaran via virtual account, dimana data akan berubah ketika ada perubahan saldo. perubahan row data ini kemudian distream ke kafka untuk diproses notifikasinya.
 
