@@ -1,0 +1,10 @@
+{
+    "name": "sqlserver-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
+        "tasks.max": "1",
+        "topic.prefix": "sqlserver-sj",
+        "database.name": "master",
+        "database.hostname": "10.10.65.5"
+    }
+}

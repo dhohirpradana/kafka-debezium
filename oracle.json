@@ -1,7 +1,7 @@
 {
   "name": "dbtest-connector",
   "config": {
-    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "connector.class": "io.debezium.connector.oracle.OracleConnector",
     "connection.url": "jdbc:oracle:thin:@//localhost:1521/orcl",
     "connection.user": "system",
     "connection.password": "oracle",
@@ -13,5 +13,37 @@
     "poll.interval.ms": "1000",
     "table.whitelist": "dbtest",
     "validate.non.null": "false"
+  }
+}
+
+{
+  "name": "oracle-connector",
+  "config": {
+      "connector.class": "io.debezium.connector.oracle.OracleConnector",
+      "tasks.max": "1",
+      "topic.prefix": "oracle-sj",
+      "database.user": "sys as sysdba",
+      "database.hostname": "10.10.65.5",
+      "database.dbname": "ANONYMOUS",
+      "database.history.kafka.topic": "oracle-history-kafka-topic",
+      "value": "schema"
+  }
+}
+
+{
+  "name": "customers-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.oracle.OracleConnector",
+    "tasks.max": "1",
+    "database.hostname": "10.10.65.5",
+    "database.port": "1521",
+    "database.user": "sys as sysdba",
+    "database.password": "sapujagad",
+    "database.dbname": "ORCLCDB",
+    "database.pdb.name": "ORCLPDB1",
+    "database.server.name": "server1",
+    "table.include.list": "C##DBZUSER.CUSTOMERS",
+    "database.history.kafka.bootstrap.servers": "10.10.65.1:9092",
+    "database.history.kafka.topic": "schema-changes"
   }
 }
