@@ -1,14 +1,17 @@
-version: '3.9'
+version: '3'
 
 services:
-  sjcanal:
-    image: landoop/fast-data-dev:latest
+  schema-registry:
+    image: confluentinc/cp-schema-registry
     ports:
-      - "2182:2181"
-      - "3030:3030"
-      - "8081-8083:8081-8083"
-      - "9581-9585:9581-9585"
-      - "9092:9092"
-
+      - "8085:8085"
+    hostname: schema-registry
+    depends_on:
+      - zookeeper
+      - kafka
     environment:
-      - ADV_HOST=10.10.65.1
+      WAIT_HOSTS: zookeeper:2181, kafka:29092
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      # SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: "zookeeper:2181"
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka:29092
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8085

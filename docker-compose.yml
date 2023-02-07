@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3"
 
 services:
   # db:
@@ -68,11 +68,11 @@ services:
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       # SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: "zookeeper:2181"
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka:29092
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: http://10.10.65.1:9092
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8085
 
   rest-proxy:
-    image: confluentinc/cp-kafka-rest:6.2.1
+    image: confluentinc/cp-kafka-rest
     ports:
       - "8082:8082"
     hostname: rest-proxy
@@ -85,7 +85,7 @@ services:
       KAFKA_REST_LISTENERS: http://0.0.0.0:8082
 #      KAFKA_REST_SCHEMA_REGISTRY_URL: 192.168.100.14:8081
 #      KAFKA_REST_ZOOKEEPER_CONNECT: 192.168.100.14:2181
-      KAFKA_REST_BOOTSTRAP_SERVERS: kafka:29092
+      KAFKA_REST_BOOTSTRAP_SERVERS: http://10.10.65.1:9092
 
   kafka-topics-ui:
     image: landoop/kafka-topics-ui
@@ -99,12 +99,11 @@ services:
       PROXY: "true"
 
   kafka_manager:
-    image: hlebalbau/kafka-manager:stable
+    image: hlebalbau/kafka-manager
     ports:
       - "9000:9000"
     depends_on:
       - zookeeper
-      - kafka
     environment:
       ZK_HOSTS: zookeeper:2181
       APPLICATION_SECRET: random-secret
