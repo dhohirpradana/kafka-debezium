@@ -14,6 +14,10 @@ services:
       - "2181:2181"
       - "2889:2888"
       - "3889:3888"
+    deploy:
+      replicas: 5
+      restart_policy:
+        condition: on-failure
 
   # Broker
   kafka:
@@ -29,6 +33,10 @@ services:
       - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=LISTENER_INT:PLAINTEXT,LISTENER_EXT:PLAINTEXT
       - KAFKA_LISTENERS=LISTENER_INT://0.0.0.0:9092,LISTENER_EXT://0.0.0.0:29092
       - KAFKA_INTER_BROKER_LISTENER_NAME=LISTENER_INT
+    deploy:
+      replicas: 5
+      restart_policy:
+        condition: on-failure
 
   connect:
     image: debezium/connect
@@ -45,6 +53,10 @@ services:
       - kafka
     volumes:
       - volume_kafka_connect:/kafka
+    deploy:
+      replicas: 5
+      restart_policy:
+        condition: on-failure
 
   kafka-connect-ui:
     image: landoop/kafka-connect-ui
@@ -68,8 +80,12 @@ services:
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       # SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: "zookeeper:2181"
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: http://10.10.65.1:9092
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka:9092
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8085
+    deploy:
+      replicas: 5
+      restart_policy:
+        condition: on-failure
 
   rest-proxy:
     image: confluentinc/cp-kafka-rest
@@ -86,6 +102,10 @@ services:
 #      KAFKA_REST_SCHEMA_REGISTRY_URL: 192.168.100.14:8081
 #      KAFKA_REST_ZOOKEEPER_CONNECT: 192.168.100.14:2181
       KAFKA_REST_BOOTSTRAP_SERVERS: http://10.10.65.1:9092
+    deploy:
+      replicas: 5
+      restart_policy:
+        condition: on-failure
 
   kafka-topics-ui:
     image: landoop/kafka-topics-ui
