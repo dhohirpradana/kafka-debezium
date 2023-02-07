@@ -47,3 +47,30 @@
     "database.history.kafka.topic": "schema-changes"
   }
 }
+
+{
+  "name": "test-source-connector",
+  "config": {
+      "connector.class" : "io.debezium.connector.oracle.OracleConnector",
+      "tasks.max" : "1",
+      "database.server.name" : "oracle-db-source",
+      "database.hostname" : "10.10.110.107",
+      "database.port" : "1521",
+      "database.user" : "sys as sysdb",
+      "database.password" : "k12345",
+      "database.dbname" : "orcl",
+      "database.out.server.name":"dbzxout",
+      "database.oracle.version": "19",
+      "database.history.kafka.bootstrap.servers" : "10.10.65.1:9092",
+      "database.history.kafka.topic": "schema-changes.inventory",
+      "database.connection.adapter": "logminer",
+      "table.include.list" : "BODHA.TEST",
+      "database.schema": "BODHA",
+      "errors.log.enable": "true",
+      "snapshot.lock.timeout.ms":"5000",
+      "include.schema.changes": "true",
+      "snapshot.mode":"initial",
+      "decimal.handling.mode": "double",
+      "topic.prefix": "dbtest-",
+  }
+}
